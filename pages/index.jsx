@@ -39,16 +39,18 @@ const App = () => {
           camera={{ position: [6, 0, 1], fov: 50 }}
         >
           <OrbitControls />
-          <ambientLight />
+          <ambientLight intensity={0.02}/>
           <Suspense>
             <Model />
           </Suspense>
   
           {/*
-          <pointLight position={[10, 0, 10]} />
-          <Effects />
+            <pointLight position={[10, 0, 1]} />
           
-          */}
+        */}
+            <directionalLight color="#ed1317" intensity={2.0}/> 
+            
+            <Effects />
           
         </Canvas>
         
