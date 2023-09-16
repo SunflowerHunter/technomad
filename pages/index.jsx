@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useMemo, useState } from 'react'
-import { Canvas, useFrame, useLoader, extend, Object3DNode } from '@react-three/fiber'
+import { Canvas, useThree, useFrame, useLoader, extend, Object3DNode } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Suspense } from 'react'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -27,13 +27,27 @@ const Model = () => {
   )
 }
 
+function Sound({url }) {
+    const sound = useRef()
+    const { camera } = useThree()
+    const [listener] = useState(() => new THREE.AudioListener())
+    const buffer = useLoader(THREE.AudioLoader, url)
+    useEffect(() => {
+        sound.current.setBuffer(buffer)
+        sound.current.setRefDistance(1)
+        sound.current.setLoop(true)
+        sound.current.play()
+        camera.add(listener)
+        return () => camera.remove(listener)
+    }, [])
+
+    return <positionalAudio ref={sound} args={[listener]} />
+}
+
 
 const App = () => {
     return (
       <div className="canvas-container">
-  
-        <h1>Coming soon</h1>
-  
         
         <Canvas
           camera={{ position: [6, 0, 1], fov: 50 }}
@@ -41,6 +55,7 @@ const App = () => {
           <OrbitControls />
           <ambientLight intensity={0.02}/>
           <Suspense>
+            <Sound url="/music/websphere.wav"/>
             <Model />
           </Suspense>
   
