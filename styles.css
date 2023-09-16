@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
     font-family: "AkiraExpanded";
     src: url('./public/Akira-Expanded-Demo.otf') format("opentype");
@@ -12,17 +16,30 @@
   
   body, 
   html {
-    background: #000000;
+    background: #ffffff;
     height: 100vh;
     width: 100%;
   }
   
-  .canvas-container {
+  .media-player {
     margin: 0px;
-    height: 100vh;
-    width: 100%;
+    width: 30%;
+    height: 30%;
+    float: right;
   }
   
+ 
+ 
+  /*
+    .canvas-container {
+      margin: 0px;
+      height: 100vh;
+      width: 100%;
+    }
+  
+  */
+ 
+
   .page-title {
     position: fixed;
     top: 100%;
