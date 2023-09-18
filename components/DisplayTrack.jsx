@@ -6,13 +6,12 @@ const DisplayTrack = ({
     setDuration,
     progressBarRef,
 }) => {
-    
+
     const onLoadedMetadata = () => {
-        console.log(audioRef.current.duration);
-        const seconds = audioRef.current.duration;
-        setDuration(seconds);
-        progressBarRef.current.max = seconds;
-        
+        const seconds = audioRef.current.duration
+        console.log(seconds)
+        setDuration(seconds)
+        progressBarRef.current.max = seconds
     };
     
     return (
@@ -21,7 +20,6 @@ const DisplayTrack = ({
                 src={currentTrack.src} 
                 ref={audioRef}
                 onLoadedMetadata={onLoadedMetadata}
-
             />
             <div className="text">
                 <p className="title">{currentTrack.title}</p>
